@@ -1,207 +1,1222 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title>Future Roots – Baobab &amp; Fonio direkt aus Kédougou</title>
-	<meta name="generator" content="MtscOffice 7.4.2.3 (Windows)"/>
-	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="00:00:00"/>
-	<meta name="" content=""/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<style type="text/css">
-		h1.cjk { font-family: "Jost", sans-serif }
-		h1.ctl { font-family: "Jost", sans-serif }
-		p { font-family: "Jost", sans-serif }
-		h2.cjk { font-family: "NSimSun" }
-		h2.ctl { font-family: "Arial" }
-		h4.cjk { font-family: "NSimSun" }
-		h4.ctl { font-family: "Arial" }
-		h3.cjk { font-family: "NSimSun" }
-		h3.ctl { font-family: "Arial" }
-	</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Roots – Baobab & Fonio direkt aus Kédougou</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:   #1E120A;
+    --terra:  #C4622D;
+    --leaf:   #3D6B4A;
+    --gold:   #D4A853;
+    --sand:   #E8D5B0;
+    --cream:  #FAF6F0;
+    --sky:    #8FBAB0;
+    --white:  #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--dark);
+    color: var(--sand);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(30,18,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,168,83,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--leaf);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(61,107,74,0.2);
+    border: 1px solid rgba(61,107,74,0.4);
+    color: var(--sky);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--sky);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    opacity: 0.85;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--terra);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #a84d22; transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(212,168,83,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(212,168,83,0.08);
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem 3rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-card-main {
+    background: var(--leaf);
+    padding: 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-card-main::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    right: 8px; bottom: 8px;
+    border: 1px solid rgba(212,168,83,0.3);
+    pointer-events: none;
+  }
+
+  .hero-card-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-quote em { color: var(--gold); font-style: normal; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat-box {
+    background: rgba(30,18,10,0.4);
+    padding: 1rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .stat-box:hover { background: rgba(30,18,10,0.7); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--sand);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-card-floating {
+    position: absolute;
+    bottom: -2rem;
+    right: -2rem;
+    background: var(--dark);
+    border: 1px solid rgba(212,168,83,0.25);
+    padding: 1.2rem 1.5rem;
+    z-index: 3;
+    width: 200px;
+  }
+
+  .floating-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .floating-text {
+    font-size: 0.85rem;
+    color: var(--sand);
+    line-height: 1.4;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; z-index: 1; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem {
+    background: var(--cream);
+    color: var(--dark);
+    padding: 6rem 4rem;
+  }
+
+  .problem .section-title { color: var(--dark); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .problem-left p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.2rem;
+  }
+
+  .problem-left p strong { color: var(--terra); }
+
+  .problem-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .problem-card {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.4rem;
+    background: var(--white);
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .problem-card:hover {
+    border-left-color: var(--terra);
+    transform: translateX(4px);
+  }
+
+  .problem-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .problem-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .problem-card p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+  }
+
+  /* ── SOLUTION SECTION ── */
+  .solution {
+    background: var(--dark);
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(61,107,74,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .solution-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .feature-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+
+  .feature-row:hover {
+    background: rgba(61,107,74,0.1);
+    border-color: rgba(61,107,74,0.3);
+  }
+
+  .feature-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .feature-row h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .feature-row p {
+    font-size: 0.82rem;
+    color: var(--sand);
+    opacity: 0.7;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .solution-right {
+    position: relative;
+  }
+
+  .solution-quote-box {
+    background: var(--leaf);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .solution-quote-box::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; right: -10px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(212,168,83,0.2);
+    pointer-events: none;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+
+  .solution-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .solution-quote-author {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── MODEL SECTION ── */
+  .model {
+    background: var(--cream);
+    color: var(--dark);
+    padding: 6rem 4rem;
+  }
+
+  .model .section-title { color: var(--dark); }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .model-card {
+    background: var(--white);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .model-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .model-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .model-card.c1::before { background: var(--leaf); }
+  .model-card.c2::before { background: var(--terra); }
+  .model-card.c3::before { background: var(--gold); }
+
+  .model-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.08;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+
+  .model-card.c1 .model-num { color: var(--leaf); }
+  .model-card.c2 .model-num { color: var(--terra); }
+  .model-card.c3 .model-num { color: var(--gold); }
+
+  .model-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .model-card.c1 h3 { color: var(--leaf); }
+  .model-card.c2 h3 { color: var(--terra); }
+  .model-card.c3 h3 { color: var(--gold); }
+
+  .model-card .phase {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 1rem;
+  }
+
+  .model-card p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .model-margin {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+  }
+
+  .model-card.c1 .model-margin { background: rgba(61,107,74,0.1); color: var(--leaf); }
+  .model-card.c2 .model-margin { background: rgba(196,98,45,0.1); color: var(--terra); }
+  .model-card.c3 .model-margin { background: rgba(212,168,83,0.1); color: #a07830; }
+
+  /* ── SDGs ── */
+  .sdgs {
+    background: var(--dark);
+    padding: 5rem 4rem;
+  }
+
+  .sdg-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .sdg-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .sdg-card:hover { border-color: var(--gold); }
+
+  .sdg-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .sdg-card h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .sdg-card p {
+    font-size: 0.8rem;
+    color: var(--sand);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── STORY SECTION ── */
+  .story {
+    background: var(--leaf);
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,18,10,0.3) 0%, transparent 70%);
+  }
+
+  .story-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story .section-tag { color: var(--gold); text-align: center; }
+
+  .story .section-title {
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .story-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(232,213,176,0.85);
+    margin: 2rem 0;
+  }
+
+  .story-text strong { color: var(--white); font-weight: 600; }
+
+  .story-highlight {
+    background: rgba(30,18,10,0.3);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    text-align: left;
+  }
+
+  .story-highlight p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── CONTACT / CTA ── */
+  .cta-section {
+    background: var(--dark);
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(61,107,74,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-title {
+    color: var(--white);
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  .cta-section .section-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cta-sub {
+    font-size: 1rem;
+    color: var(--sand);
+    opacity: 0.7;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-item .label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-item .value {
+    font-size: 0.95rem;
+    color: var(--sand);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--sand);
+    opacity: 0.4;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,168,83,0.3), transparent);
+    margin: 0 4rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 2rem; }
+    .hero-right { padding: 2rem 1.5rem 4rem; }
+    .hero-card-floating { display: none; }
+    .problem, .solution, .model, .sdgs, .story, .cta-section { padding: 4rem 1.5rem; }
+    .problem-grid, .solution-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .model-grid { grid-template-columns: 1fr; }
+    .sdg-row { flex-direction: column; }
+    footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+    .divider { margin: 0 1.5rem; }
+    .contact-info { gap: 2rem; }
+  }
+</style>
 </head>
-<body lang="de-DE" dir="ltr"><p style="margin-bottom: 0cm"><a href="#">🌱</a></p>
-<p><a href="#">Future Roots </a>
-</p>
-<ul>
-	<li><p style="margin-bottom: 0cm"><a href="#problem">Das Problem</a>
-		</p>
-	<li><p style="margin-bottom: 0cm"><a href="#loesung">Die Lösung</a>
-		</p>
-	<li><p style="margin-bottom: 0cm"><a href="#modell">Modell</a> 
-	</p>
-	<li><p style="margin-bottom: 0cm"><a href="#story">Unsere Geschichte</a>
-		</p>
-	<li><p><a href="#kontakt">Kontakt</a> 
-	</p>
-</ul>
-<p>🌍 Kédougou, Senegal → Deutschland</p>
-<h1 class="western">Baobab &amp;<br/>
-Fonio –<br/>
-<em>direkt,<br/>
-fair,
-echt.</em> 
-</h1>
-<p>Future Roots importiert Superfoods direkt aus Kédougou, Senegal –
-mit dem kürzesten Transportweg Europas, höchster Nährstoffdichte
-und einer Geschichte, die man sehen kann. 
-</p>
-<p><a href="#kontakt">Kontakt aufnehmen</a> <a href="#story">Unsere
-Geschichte</a> 
-</p>
-<p>„Ich zeige der Welt, dass <em>Würde</em> ein Geschäftsmodell
-ist.&quot; 
-</p>
-<p style="margin-bottom: 0cm">14 Tage Seeweg 
-</p>
-<p style="margin-bottom: 0cm">70% weniger CO₂ 
-</p>
-<p style="margin-bottom: 0cm">3 Dokumentarfilme 
-</p>
-<p style="margin-bottom: 0cm">10+ Jahre Vertrauen 
-</p>
-<p style="margin-bottom: 0cm">Unser Purpose</p>
-<p style="margin-bottom: 0cm">Jeder Mensch verdient Sichtbarkeit und
-Würde.</p>
-<p style="margin-bottom: 0cm">Scroll 
-</p>
-<p>Das Problem</p>
-<h2 class="western">Drei Ungerechtigkeiten.<br/>
-Eine gemeinsame
-Wurzel.</h2>
-<p>Der deutsche Superfood-Markt boomt – und ist dabei <strong>ökologisch
-und sozial widersprüchlich.</strong> Chia, Quinoa und Açaí reisen
-40 Tage aus Übersee, während Westafrika vor der Haustür liegt. 
-</p>
-<p>Gleichzeitig bleibt die <strong>Expertise der afrikanischen
-Diaspora</strong> in Deutschland ungenutzt – und Kleinbauern wie
-die Bedik in Kédougou ernten das Beste, verdienen aber das Wenigste.
-</p>
-<p>Diese drei Ungerechtigkeiten hängen zusammen. Und sie lassen sich
-<strong>gemeinsam lösen.</strong> 
-</p>
-<p>🌍</p>
-<h4 class="western">Ökologisch</h4>
-<p>Superfoods reisen 40 Tage aus Übersee – während Westafrika nur
-14 Tage entfernt liegt. 60–70% mehr CO₂ pro kg.</p>
-<p>👥</p>
-<h4 class="western">Sozial</h4>
-<p>Afrikanische Diaspora in Deutschland: hochqualifiziert, aber
-Expertise bleibt unsichtbar und ungenutzt.</p>
-<p>🤝</p>
-<h4 class="western"><font color="#a07830">Wirtschaftlich</font></h4>
-<p>Die Bedik in Kédougou ernten das Beste – und verdienen durch
-Zwischenhändler das Wenigste.</p>
-<p>Die Lösung</p>
-<h2 class="western">Future Roots verbindet<br/>
-alle drei Probleme.</h2>
-<p>🌿</p>
-<h4 class="western">Direktimport aus Kédougou</h4>
-<p>10–14 Tage Seeweg statt 40. Vollreife Ernte direkt von den
-Bedik-Bauernfamilien – kein Broker, kein Umweg.</p>
-<p>🎬</p>
-<h4 class="western">3 Dokumentarfilme als Beweis</h4>
-<p>Authentisches Storytelling das kein Wettbewerber kopieren kann.
-QR-Code auf jeder Verpackung führt zum Film.</p>
-<p>🤝</p>
-<h4 class="western">Diaspora-Partner als Micro-Unternehmer</h4>
-<p>Senegalesische Diaspora in Deutschland sichert Qualität und
-Vertrieb – faire Bezahlung, echte Integration.</p>
-<p>📚</p>
-<h4 class="western">Wissenschaftliche Grundlage</h4>
-<p>Dissertation über die Bedik-Gemeinschaft in Kédougou. Zehn Jahre
-persönliches Vertrauen als Fundament.</p>
-<p>🌱</p>
-<h4 class="western">Zwei Produkte – eine Mission</h4>
-<p>Jahr 1: Baobab-Pulver. Jahr 2: Fonio – das älteste Getreide
-Westafrikas. Glutenfrei, klimaresilient, einzigartig.</p>
-<p>&quot;</p>
-<p>Kein Wettbewerber auf der Welt hat das, was Future Roots
-mitbringt: eine Dissertation über die Bedik, drei Dokumentarfilme
-und zehn Jahre Migrationsarbeit als Fundament des Diaspora-Modells.
-Unsere Lieferkette ist kein Vertrag – sie ist ein Jahrzehnt
-persönlichen Vertrauens. 
-</p>
-<p style="margin-bottom: 0cm">Future Roots – Gründerin</p>
-<p>Geschäftsmodell</p>
-<h2 class="western">Drei Einnahmesäulen.<br/>
-Ein faires System.</h2>
-<p>01</p>
-<h3 class="western">B2B Großhandel</h3>
-<p>Jahr 1 – Priorität</p>
-<p>Bioläden, Reformhäuser und Gastronomie mit Nachhaltigkeitsfokus.
-Jeder B2B-Kunde erhält ein fertiges Marketing-Paket mit Film, Texten
-und QR-Code.</p>
-<p style="margin-bottom: 0cm">Marge 28–35% 
-</p>
-<p>02</p>
-<h3 class="western">D2C Online-Shop</h3>
-<p>Jahr 1–2 – Aufbau</p>
-<p>Abo-Modell, Probierboxen und exklusiver Dokumentarfilm-Zugang für
-Premium-Kunden. Community-Aufbau über Storytelling und Social Media.</p>
-<p style="margin-bottom: 0cm">Marge 45–55% 
-</p>
-<p>03</p>
-<h3 class="western">Impact-Lizenz</h3>
-<p>Ab Jahr 3</p>
-<p>Das Diaspora-Netzwerk als Dienstleistung für andere Unternehmen.
-Future Roots wird zur Blaupause für faire afrikanisch-europäische
-Handelsmodelle.</p>
-<p style="margin-bottom: 0cm">Marge 60–70% 
-</p>
-<p>Nachhaltigkeitsziele</p>
-<h2 class="western">Drei SDGs.<br/>
-Ein Modell.</h2>
-<p>SDG 8</p>
-<h4 class="western">Menschenwürdige Arbeit</h4>
-<p>Faire Preise für Bedik-Bauern und senegalesische Diaspora-Partner
-als Micro-Unternehmer in Deutschland.</p>
-<p>SDG 10</p>
-<h4 class="western">Weniger Ungleichheiten</h4>
-<p>Wirtschaftliche Integration von Menschen, die der Arbeitsmarkt
-übersieht – auf beiden Seiten des Ozeans.</p>
-<p>SDG 12</p>
-<h4 class="western">Nachhaltiger Konsum</h4>
-<p>Kürzester Transportweg aller Anbieter: 10–14 Tage statt 40.
-60–70% weniger CO₂ pro Kilogramm.</p>
-<p>Unsere Geschichte</p>
-<h2 class="western">Mehr als ein Unternehmen.<br/>
-Eine Mission.</h2>
-<p>Ich bin nicht als Händlerin nach Kédougou gefahren. Ich bin als
-Forscherin gegangen – und habe geblieben, weil <strong>die
-Geschichte der Bedik erzählt werden muss.</strong> 
-</p>
-<p>„Ich habe meine Dissertation über die Bedik in Kédougou
-geschrieben, drei Dokumentarfilme über ihre Kultur gedreht und zehn
-Jahre lang Menschen begleitet, deren Expertise niemand sah. Future
-Roots ist meine Antwort auf beide Ungerechtigkeiten.&quot; 
-</p>
-<p>Diese Verbindung – Forschung, Film, Migrationsarbeit – ist
-kein Zufall. Sie ist das Fundament. <strong>Kein Wettbewerber kann
-das kopieren.</strong> 
-</p>
-<p style="margin-bottom: 0cm"><a href="#kontakt">Ins Gespräch kommen
-→</a> 
-</p>
-<p>Kontakt</p>
-<h2 class="western">Bereit für<br/>
-<em>Beweisen, nicht träumen?</em>
-</h2>
-<p>Wir suchen B2B-Partner, Impact-Investoren und Menschen, die
-gemeinsam beweisen wollen, dass Würde ein Geschäftsmodell ist. 
-</p>
-<p style="margin-bottom: 0cm"><a href="mailto:hello@future-roots.de">hello@future-roots.de</a>
-</p>
-<p style="margin-bottom: 0cm">Startup</p>
-<p style="margin-bottom: 0cm">Future Roots</p>
-<p style="margin-bottom: 0cm">Produkte</p>
-<p style="margin-bottom: 0cm">Baobab &amp; Fonio</p>
-<p style="margin-bottom: 0cm">Herkunft</p>
-<p style="margin-bottom: 0cm">Kédougou, Senegal</p>
-<p style="margin-bottom: 0cm">Markt</p>
-<p style="margin-bottom: 0cm">Deutschland</p>
-<p>Future Roots</p>
-<p>Baobab &amp; Fonio direkt aus Kédougou, Senegal</p>
-<p>© 2026 Future Roots</p>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🌱</div>
+    <span class="nav-logo-text">Future Roots</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">Das Problem</a></li>
+    <li><a href="#loesung">Die Lösung</a></li>
+    <li><a href="#modell">Modell</a></li>
+    <li><a href="#story">Unsere Geschichte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">🌍 Kédougou, Senegal → Deutschland</div>
+    <h1 class="hero-title">
+      Baobab &<br>
+      Fonio –<br>
+      <em>direkt,<br>fair, echt.</em>
+    </h1>
+    <p class="hero-sub">
+      Future Roots importiert Superfoods direkt aus Kédougou, Senegal –
+      mit dem kürzesten Transportweg Europas, höchster Nährstoffdichte
+      und einer Geschichte, die man sehen kann.
+    </p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
+      <a href="#story" class="btn-secondary">Unsere Geschichte</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <p class="hero-card-quote">
+          „Ich zeige der Welt, dass
+          <em>Würde</em>
+          ein Geschäftsmodell ist."
+        </p>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <span class="stat-num">14</span>
+            <span class="stat-label">Tage Seeweg</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">70%</span>
+            <span class="stat-label">weniger CO₂</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Dokumentarfilme</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Jahre Vertrauen</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card-floating">
+        <div class="floating-label">Unser Purpose</div>
+        <div class="floating-text">Jeder Mensch verdient Sichtbarkeit und Würde.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem reveal" id="problem">
+  <div class="section-tag">Das Problem</div>
+  <h2 class="section-title">Drei Ungerechtigkeiten.<br>Eine gemeinsame Wurzel.</h2>
+  <div class="problem-grid">
+    <div class="problem-left">
+      <p>
+        Der deutsche Superfood-Markt boomt – und ist dabei
+        <strong>ökologisch und sozial widersprüchlich.</strong>
+        Chia, Quinoa und Açaí reisen 40 Tage aus Übersee,
+        während Westafrika vor der Haustür liegt.
+      </p>
+      <p>
+        Gleichzeitig bleibt die <strong>Expertise der afrikanischen Diaspora</strong>
+        in Deutschland ungenutzt – und Kleinbauern wie die Bedik
+        in Kédougou ernten das Beste, verdienen aber das Wenigste.
+      </p>
+      <p>
+        Diese drei Ungerechtigkeiten hängen zusammen.
+        Und sie lassen sich <strong>gemeinsam lösen.</strong>
+      </p>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(196,98,45,0.1)">🌍</div>
+        <div>
+          <h4 style="color:var(--terra)">Ökologisch</h4>
+          <p>Superfoods reisen 40 Tage aus Übersee – während Westafrika nur 14 Tage entfernt liegt. 60–70% mehr CO₂ pro kg.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(61,107,74,0.1)">👥</div>
+        <div>
+          <h4 style="color:var(--leaf)">Sozial</h4>
+          <p>Afrikanische Diaspora in Deutschland: hochqualifiziert, aber Expertise bleibt unsichtbar und ungenutzt.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(212,168,83,0.1)">🤝</div>
+        <div>
+          <h4 style="color:#a07830">Wirtschaftlich</h4>
+          <p>Die Bedik in Kédougou ernten das Beste – und verdienen durch Zwischenhändler das Wenigste.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section class="solution reveal" id="loesung">
+  <div class="section-tag">Die Lösung</div>
+  <h2 class="section-title" style="color:var(--white)">Future Roots verbindet<br>alle drei Probleme.</h2>
+  <div class="solution-grid">
+    <div class="solution-features">
+      <div class="feature-row">
+        <div class="feature-icon">🌿</div>
+        <div>
+          <h4>Direktimport aus Kédougou</h4>
+          <p>10–14 Tage Seeweg statt 40. Vollreife Ernte direkt von den Bedik-Bauernfamilien – kein Broker, kein Umweg.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎬</div>
+        <div>
+          <h4>3 Dokumentarfilme als Beweis</h4>
+          <p>Authentisches Storytelling das kein Wettbewerber kopieren kann. QR-Code auf jeder Verpackung führt zum Film.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🤝</div>
+        <div>
+          <h4>Diaspora-Partner als Micro-Unternehmer</h4>
+          <p>Senegalesische Diaspora in Deutschland sichert Qualität und Vertrieb – faire Bezahlung, echte Integration.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📚</div>
+        <div>
+          <h4>Wissenschaftliche Grundlage</h4>
+          <p>Dissertation über die Bedik-Gemeinschaft in Kédougou. Zehn Jahre persönliches Vertrauen als Fundament.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🌱</div>
+        <div>
+          <h4>Zwei Produkte – eine Mission</h4>
+          <p>Jahr 1: Baobab-Pulver. Jahr 2: Fonio – das älteste Getreide Westafrikas. Glutenfrei, klimaresilient, einzigartig.</p>
+        </div>
+      </div>
+    </div>
+    <div class="solution-right">
+      <div class="solution-quote-box">
+        <div class="big-quote">"</div>
+        <p class="solution-quote-text">
+          Kein Wettbewerber auf der Welt hat das, was Future Roots mitbringt:
+          eine Dissertation über die Bedik, drei Dokumentarfilme und
+          zehn Jahre Migrationsarbeit als Fundament des Diaspora-Modells.
+          Unsere Lieferkette ist kein Vertrag –
+          sie ist ein Jahrzehnt persönlichen Vertrauens.
+        </p>
+        <div class="solution-quote-author">Future Roots – Gründerin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL -->
+<section class="model reveal" id="modell">
+  <div class="section-tag">Geschäftsmodell</div>
+  <h2 class="section-title">Drei Einnahmesäulen.<br>Ein faires System.</h2>
+  <div class="model-grid">
+    <div class="model-card c1">
+      <div class="model-num">01</div>
+      <h3>B2B Großhandel</h3>
+      <div class="phase">Jahr 1 – Priorität</div>
+      <p>Bioläden, Reformhäuser und Gastronomie mit Nachhaltigkeitsfokus. Jeder B2B-Kunde erhält ein fertiges Marketing-Paket mit Film, Texten und QR-Code.</p>
+      <span class="model-margin">Marge 28–35%</span>
+    </div>
+    <div class="model-card c2">
+      <div class="model-num">02</div>
+      <h3>D2C Online-Shop</h3>
+      <div class="phase">Jahr 1–2 – Aufbau</div>
+      <p>Abo-Modell, Probierboxen und exklusiver Dokumentarfilm-Zugang für Premium-Kunden. Community-Aufbau über Storytelling und Social Media.</p>
+      <span class="model-margin">Marge 45–55%</span>
+    </div>
+    <div class="model-card c3">
+      <div class="model-num">03</div>
+      <h3>Impact-Lizenz</h3>
+      <div class="phase">Ab Jahr 3</div>
+      <p>Das Diaspora-Netzwerk als Dienstleistung für andere Unternehmen. Future Roots wird zur Blaupause für faire afrikanisch-europäische Handelsmodelle.</p>
+      <span class="model-margin">Marge 60–70%</span>
+    </div>
+  </div>
+</section>
+
+<!-- SDGs -->
+<section class="sdgs reveal">
+  <div class="section-tag">Nachhaltigkeitsziele</div>
+  <h2 class="section-title" style="color:var(--white)">Drei SDGs.<br>Ein Modell.</h2>
+  <div class="sdg-row">
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 8</div>
+      <h4>Menschenwürdige Arbeit</h4>
+      <p>Faire Preise für Bedik-Bauern und senegalesische Diaspora-Partner als Micro-Unternehmer in Deutschland.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 10</div>
+      <h4>Weniger Ungleichheiten</h4>
+      <p>Wirtschaftliche Integration von Menschen, die der Arbeitsmarkt übersieht – auf beiden Seiten des Ozeans.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 12</div>
+      <h4>Nachhaltiger Konsum</h4>
+      <p>Kürzester Transportweg aller Anbieter: 10–14 Tage statt 40. 60–70% weniger CO₂ pro Kilogramm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story reveal" id="story">
+  <div class="story-inner">
+    <div class="section-tag">Unsere Geschichte</div>
+    <h2 class="section-title">Mehr als ein Unternehmen.<br>Eine Mission.</h2>
+    <p class="story-text">
+      Ich bin nicht als Händlerin nach Kédougou gefahren.
+      Ich bin als Forscherin gegangen – und habe geblieben,
+      weil <strong>die Geschichte der Bedik erzählt werden muss.</strong>
+    </p>
+    <div class="story-highlight">
+      <p>
+        „Ich habe meine Dissertation über die Bedik in Kédougou geschrieben,
+        drei Dokumentarfilme über ihre Kultur gedreht und zehn Jahre lang
+        Menschen begleitet, deren Expertise niemand sah.
+        Future Roots ist meine Antwort auf beide Ungerechtigkeiten."
+      </p>
+    </div>
+    <p class="story-text">
+      Diese Verbindung – Forschung, Film, Migrationsarbeit – ist kein Zufall.
+      Sie ist das Fundament. <strong>Kein Wettbewerber kann das kopieren.</strong>
+    </p>
+    <a href="#kontakt" class="btn-secondary" style="margin-top:1rem">Ins Gespräch kommen →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal" id="kontakt">
+  <div class="section-tag">Kontakt</div>
+  <h2 class="section-title">
+    Bereit für<br>
+    <em>Beweisen, nicht träumen?</em>
+  </h2>
+  <p class="cta-sub">
+    Wir suchen B2B-Partner, Impact-Investoren und Menschen,
+    die gemeinsam beweisen wollen, dass Würde ein Geschäftsmodell ist.
+  </p>
+  <a href="mailto:hello@future-roots.de" class="btn-primary">hello@future-roots.de</a>
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="label">Startup</div>
+      <div class="value">Future Roots</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Produkte</div>
+      <div class="value">Baobab & Fonio</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Herkunft</div>
+      <div class="value">Kédougou, Senegal</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Markt</div>
+      <div class="value">Deutschland</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Future Roots</div>
+  <p>Baobab & Fonio direkt aus Kédougou, Senegal</p>
+  <p>© 2026 Future Roots</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.opacity = link.getAttribute('href') === '#' + current ? '1' : '0.7';
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
 </body>
 </html>
