@@ -1,103 +1,308 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Future Roots | Baobab &amp; Fonio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --dark: #1E120A; --gold: #D4A853; --terra: #C4622D; --sand: #FAF6F0; }
-        body { background-color: var(--dark); color: var(--sand); font-family: 'Inter', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        header { padding: 40px 0; text-align: center; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Roots | Baobab & Fonio</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: #1A1208;
+      color: #F5EDD4;
+      line-height: 1.7;
+    }
 
-        .hero-bg {
-            background: linear-gradient(rgba(30, 18, 10, 0.6), rgba(30, 18, 10, 0.75)), url('baobab-baum.png');
-            background-size: cover;
-            background-position: center;
-            padding: 120px 20px;
-            text-align: center;
-        }
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background:
+        linear-gradient(to bottom, rgba(26,18,8,0.5), rgba(26,18,8,0.9)),
+        url('baobab-baum.png') center/cover no-repeat;
+    }
+    .hero-brand {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: normal;
+      font-style: italic;
+      line-height: 1.1;
+      color: #F5EDD4;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-quote {
+      font-size: 1rem;
+      color: rgba(245,237,212,0.7);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid #C9A84C;
+      color: #C9A84C;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: #C9A84C; color: #1A1208; }
 
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 20px; color: white; }
-        .highlight { color: var(--gold); font-style: italic; }
-        .quote-box { border-left: 4px solid var(--terra); padding: 15px 30px; margin: 40px auto; max-width: 700px; text-align: left; background: rgba(255,255,255,0.05); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 50px 0; }
-        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,168,83,0.2); border-radius: 15px; overflow: hidden; }
-        .img-box { height: 350px; background-size: cover; background-position: center; background-color: #2a1a0f; }
-        .card-content { padding: 30px; }
-        h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2rem; margin: 0 0 15px; }
-        .btn { display: inline-block; background: var(--gold); color: var(--dark); padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; }
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: normal;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
 
-        .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terra); font-weight: 600; margin-bottom: 10px; }
-        .about-text { max-width: 750px; margin: 0 auto; text-align: center; padding: 30px 0 60px; }
-        .about-text p { font-size: 1.05rem; color: rgba(250,246,240,0.85); margin-bottom: 1.2rem; }
-        .note { font-size: 0.85rem; color: rgba(250,246,240,0.55); text-align: center; max-width: 700px; margin: 0 auto 40px; }
+    /* ── STORY ── */
+    .story { background: #1A1208; }
+    .story p {
+      font-size: 1rem;
+      color: rgba(245,237,212,0.8);
+      max-width: 660px;
+      margin-bottom: 1.2rem;
+    }
 
-        footer { text-align: center; padding: 50px 20px 30px; border-top: 1px solid rgba(212,168,83,0.15); margin-top: 40px; }
-        footer p { font-size: 0.85rem; color: rgba(250,246,240,0.5); }
+    /* ── PRODUCTS ── */
+    .products { background: #120e06; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .product-card {
+      border: 1px solid rgba(201,168,76,0.25);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .product-card:hover { border-color: rgba(201,168,76,0.6); }
+    .product-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .product-body { padding: 1.8rem; }
+    .product-body h3 {
+      font-size: 1.7rem;
+      font-style: italic;
+      font-weight: normal;
+      color: #C9A84C;
+      margin-bottom: 0.75rem;
+    }
+    .product-body p {
+      font-size: 0.9rem;
+      color: rgba(245,237,212,0.7);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .badge {
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: #C9A84C;
+      margin-bottom: 1rem;
+    }
+    .lab-links { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.75rem; }
+    .lab-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .lab-link:hover { opacity: 1; }
 
-        @media (max-width: 600px) {
-            .hero-bg { padding: 80px 16px; }
-            .card-content { padding: 20px; }
-        }
-    </style>
+    /* lab icon placeholder */
+    .lab-icon-box {
+      height: 260px;
+      background: linear-gradient(135deg, #2D5016, #1A1208);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 0.75rem;
+    }
+    .lab-icon-box .lab-title {
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #C9A84C;
+    }
+    .lab-icon-box .lab-sub {
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,237,212,0.4);
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer-bar {
+      background: rgba(201,168,76,0.06);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .disclaimer-bar p {
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      color: rgba(245,237,212,0.3);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A1208;
+      border-top: 1px solid rgba(201,168,76,0.12);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      color: rgba(245,237,212,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <header><div class="logo-text">FUTURE ROOTS</div></header>
 
-    <div class="hero-bg">
-        <div class="container">
-            <h1>Die <span class="highlight">Wurzeln der Zukunft</span></h1>
-            <div class="quote-box">
-                <p>„Baobab &amp; Fonio: faire Lieferketten mit Gesicht und Geschichte – direkt aus Kédougou, Senegal.“</p>
-            </div>
-            <a href="mailto:sophiewade@yahoo.fr" class="btn">Kontakt aufnehmen</a>
-        </div>
-    </div>
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-brand">Future Roots</p>
+    <h1>Die Wurzeln der Zukunft</h1>
+    <p class="hero-quote">„Baobab & Fonio: faire Lieferketten mit Gesicht und Geschichte – direkt aus Kédougou, Senegal."</p>
+    <a href="mailto:sophiewade@yahoo.fr" class="btn">Kontakt aufnehmen</a>
+  </header>
 
+  <!-- STORY -->
+  <section class="story">
     <div class="container">
-        <div class="about-text">
-            <div class="section-label">Unsere Geschichte</div>
-            <p>
-                Vor zehn Jahren bin ich zum ersten Mal nach Kédougou im Südosten Senegals gereist, um über die
-                Sprache der Bedik-Gemeinschaften zu forschen (Dissertation, Universität zu Köln, 2016).
-                Daraus sind drei Dokumentarfilme und eine zehnjährige, persönliche Verbindung zur Region entstanden.
-            </p>
-            <p>
-                Future Roots baut eine direkte, faire Lieferkette für Baobab-Pulver aus Kédougou nach Deutschland auf –
-                in Zusammenarbeit mit Frauenkooperativen vor Ort und meinem Partner Mohamadou Khouma, Agraringenieur aus Kédougou.
-            </p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <div class="img-box" style="background-image: url('baobab-frucht.png');"></div>
-                <div class="card-content">
-                    <h3>Baobab</h3>
-                    <p>Die Frucht des afrikanischen Affenbrotbaums: reich an Ballaststoffen und Vitamin C. Unser Markteintrittsprodukt, laborgeprüft durch Eurofins.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-box" style="background-image: url('fonio.png');"></div>
-                <div class="card-content">
-                    <h3>Fonio</h3>
-                    <p>Eines der ältesten Getreide Westafrikas: glutenfrei und nährstoffreich. Geplant als unser zweites Produkt nach erfolgreicher Markteinführung von Baobab.</p>
-                </div>
-            </div>
-        </div>
-
-        <p class="note">
-            Future Roots befindet sich in der Gründungsphase. Aktuelle Zahlen zu Markt, Umsatz und Klimawirkung sind
-            vorsichtige, transparent ausgewiesene Annahmen und keine validierten Endergebnisse.
-        </p>
+      <p class="section-label">Unsere Geschichte</p>
+      <h2 class="section-title">Zehn Jahre Kédougou</h2>
+      <p>Vor zehn Jahren bin ich zum ersten Mal nach Kédougou im Südosten Senegals gereist, um über die Sprache der Bedik-Gemeinschaften zu forschen (Dissertation, Universität zu Köln, 2016). Daraus sind drei Dokumentarfilme und eine zehnjährige, persönliche Verbindung zur Region entstanden.</p>
+      <p>Future Roots baut eine direkte, faire Lieferkette für Baobab-Pulver aus Kédougou nach Deutschland auf – in Zusammenarbeit mit Frauenkooperativen vor Ort und meinem Partner Mohamadou Khouma, Agraringenieur aus Kédougou.</p>
     </div>
+  </section>
 
-    <footer>
-        <p>Future Roots — Kédougou, Senegal · Berlin, Deutschland</p>
-        <p>Kontakt: <a href="mailto:sophiewade@yahoo.fr" style="color: var(--gold);">sophiewade@yahoo.fr</a></p>
-    </footer>
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="container">
+      <p class="section-label">Produkte &amp; Qualität</p>
+      <h2 class="section-title">Direkt von der Quelle</h2>
+      <div class="products-grid">
+
+        <!-- BAOBAB — neues Herzfoto -->
+        <div class="product-card">
+          <img src="baobab-herz_jpg.png" alt="Baobab-Pulver aus Kédougou in Herzform" />
+          <div class="product-body">
+            <h3>Baobab</h3>
+            <p>Die Frucht des afrikanischen Affenbrotbaums: reich an Ballaststoffen (42,8 g/100g) und Vitamin C. Unser Markteintrittsprodukt, schonend verarbeitet, getrocknet und pulverisiert in Kédougou.</p>
+            <span class="badge">✓ Laborgeprüft · Eurofins SOFIA Berlin</span>
+            <div class="lab-links">
+              <a class="lab-link" href="Labo_analyse_web.pdf" target="_blank">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/></svg>
+                Laboranalyse Nährwerte (PDF)
+              </a>
+              <a class="lab-link" href="Labo_analyse_web.pdf" target="_blank">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/></svg>
+                Laboranalyse Mikrobiologie (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- LABORANALYSE — statt Fonio -->
+        <div class="product-card">
+          <div class="lab-icon-box">
+            <svg width="50" height="50" fill="none" stroke="#C9A84C" stroke-width="1.2" viewBox="0 0 24 24" style="opacity:.8">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+            </svg>
+            <p class="lab-title">Eurofins SOFIA GmbH</p>
+            <p class="lab-sub">Prüfbericht · Berlin · 18.05.2026</p>
+          </div>
+          <div class="product-body">
+            <h3>Laboranalyse</h3>
+            <p>Vollständige mikrobiologische Prüfung und Nährwertanalyse unseres Baobab-Pulvers durch Eurofins SOFIA GmbH, Berlin. Beurteilung: <em style="color:#C9A84C;">„handelsüblicher Beschaffenheit"</em>. Salmonellen negativ, E. coli &lt;10 KBE/g.</p>
+            <div class="lab-links">
+              <a class="lab-link" href="Labo_analyse_web.pdf" target="_blank">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/></svg>
+                Nährwerte ansehen (PDF)
+              </a>
+              <a class="lab-link" href="Labo_analyse_web.pdf" target="_blank">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/></svg>
+                Mikrobiologie ansehen (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-bar">
+    <p>Future Roots befindet sich in der Gründungsphase. Aktuelle Zahlen zu Markt, Umsatz und Klimawirkung sind vorsichtige, transparent ausgewiesene Annahmen und keine validierten Endergebnisse.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Future Roots — Kédougou, Senegal · Berlin, Deutschland · Kontakt: <a href="mailto:sophiewade@yahoo.fr" style="color:#C9A84C;text-decoration:none;">sophiewade@yahoo.fr</a>
+  </footer>
+
 </body>
 </html>
